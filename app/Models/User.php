@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -42,4 +44,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function guest(): static
+    {
+        $user = User::where('email', 'guest@hydephp.com')->first();
+        if (! $user) {
+            $user = User::create([
+                'name' => 'Guest',
+                'email' => 'guest@hydephp.com',
+                'email_verified_at' => now(),
+                'password' => Hash::make('guest')
+            ]);
+        }
+        return $user;
+    }
 }
