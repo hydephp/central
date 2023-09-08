@@ -1,6 +1,6 @@
 <footer class="absolute bottom-0 py-2 px-4 w-full text-center">
     <small class="opacity-70">
-        {{ config('app.name') }} <small>v</small><code class="font-mono">{{ $footer->version() }}</code> <small id="verson-status" class="opacity-70"></small>
+        {{ config('app.name') }} <small>v</small><code class="font-mono">{{ $footer->version() }}</code> <small id="version-status" class="opacity-70"></small>
     </small>
     <small class="opacity-50">|</small>
     <small class="opacity-70 text-primary-500 hover:underline">
@@ -8,23 +8,21 @@
     </small>
 
     <script>
-        // Async script to check if version is up to date, without slowing down the main request
+        // Async script to check if version is up-to-date, without slowing down the main request
         document.addEventListener("DOMContentLoaded", async function () {
             // Replace these variables with your GitHub repository details
-            const owner = 'hydephp';
-            const repo = 'central';
-            const suppliedCommitHash = '{{ $footer->version() }}';
+            const currentCommitHash = '{{ $footer->version() }}';
             const isLocal = {{ app('env') === 'local' ? 'true' : 'false' }};
-            const label = document.getElementById('verson-status');
+            const label = document.getElementById('version-status');
             let match = null;
 
             try {
                 // Fetch the latest commit from the GitHub API
-                const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/commits/main`);
+                const response = await fetch(`https://api.github.com/repos/hydephp/central/commits/main`);
                 const data = await response.json();
                 const sha = data.sha.slice(0, 7);
 
-                match = sha === suppliedCommitHash;
+                match = sha === currentCommitHash;
             } catch (error) {
                 console.error("Error fetching data from GitHub API:", error);
             }
@@ -39,6 +37,5 @@
                 }
             }
         });
-
     </script>
 </footer>
