@@ -53,6 +53,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 GuestableAuthenticate::class,
-            ]);
+            ])->favicon(url('favicon.ico'));
     }
 }
