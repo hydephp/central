@@ -36,6 +36,9 @@ jobs:
   ssh-deploy:
     runs-on: ubuntu-latest
     needs: laravel-tests
+    concurrency:
+      group: production
+      cancel-in-progress: false
     environment:
       name: production
       url: https://central.hydephp.com
