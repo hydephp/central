@@ -35,7 +35,7 @@ jobs:
 
   ssh-deploy:
     runs-on: ubuntu-latest
-    #needs: laravel-tests
+    needs: laravel-tests
     environment: production
     steps:
       - name: Connect to SSH
