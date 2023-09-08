@@ -75,7 +75,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     public function getFilamentAvatarUrl(): ?string
     {
         if ($this->isGuest()) {
-            return asset('logo.svg');
+            return asset('avatar.png');
         }
 
         return null;
