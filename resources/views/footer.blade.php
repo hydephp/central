@@ -1,6 +1,6 @@
 <footer class="absolute bottom-0 py-2 px-4 w-full text-center">
     <small class="opacity-70">
-        {{ config('app.name') }} v<code>{{ $footer->version() }}</code> <small id="verson-status" class="opacity-70"></small>
+        {{ config('app.name') }} <small>v</small><code class="font-mono">{{ $footer->version() }}</code> <small id="verson-status" class="opacity-70"></small>
     </small>
     <small class="opacity-50">|</small>
     <small class="opacity-70 text-primary-500 hover:underline">
