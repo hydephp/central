@@ -14,20 +14,10 @@
                     {{ __('filament-panels::widgets/account-widget.welcome', ['app' => config('app.name')]) }},
                     {{ filament()->getUserName($user) }}!
                 </h2>
-                <p class="text-sm text-gray-500 dark:text-gray-400 pe-8">
+                <p class="text-sm text-gray-500 dark:text-gray-400">
                     This website will give you quick access and insight to all things <x-filament::link href="https://hydephp.com/">HydePHP</x-filament::link>!
                 </p>
             </div>
-
-            <form
-                    action="{{ filament()->getLogoutUrl() }}"
-                    method="post"
-                    class="my-auto -me-2.5 sm:me-0"
-            >
-                @csrf
-
-                <x-filament::link tag="button" type="submit" class="font-normal text-sm">{{ __('filament-panels::widgets/account-widget.actions.logout.label') }}</x-filament::link>
-            </form>
         </div>
     </x-filament::section>
 </x-filament-widgets::widget>
