@@ -14,9 +14,20 @@
                     {{ __('filament-panels::widgets/account-widget.welcome', ['app' => config('app.name')]) }},
                     {{ filament()->getUserName($user) }}!
                 </h2>
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                    This website will give you quick access and insight to all things <x-filament::link href="https://hydephp.com/">HydePHP</x-filament::link>!
-                </p>
+                <div class="text-sm text-gray-500 dark:text-gray-400 flex flex-wrap" style="flex-direction: row;">
+                    <p>This website</p>
+                    <p>&nbsp;</p>
+                    <p>will give you</p>
+                    <p>&nbsp;</p>
+                    <p>quick access</p>
+                    <p>&nbsp;</p>
+                    <p>and insight</p>
+                    <p>&nbsp;</p>
+                    <p> to all things</p>
+                    <p>&nbsp;</p>
+                    <p><x-filament::link href="https://hydephp.com/">HydePHP</x-filament::link></p>
+                    <p>!</p>
+                </div>
             </div>
         </div>
     </x-filament::section>
