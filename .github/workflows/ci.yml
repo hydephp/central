@@ -47,7 +47,7 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASS }}
           run: |
-            cd $SSH_PATH
+            cd repositories/central
             bash update.sh
 
       - name: Check website status
