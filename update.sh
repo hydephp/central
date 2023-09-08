@@ -1,3 +1,9 @@
+if [ -e "storage/interop/UPDATE.lock" ]; then
+    echo "Fatal: An update is already in progress";
+    exit 1;
+fi
+touch storage/interop/UPDATE.lock;
+
 php artisan down
 git pull
 php ~/composer.phar install --no-dev --no-interaction
@@ -5,3 +11,6 @@ php artisan up
 
 # Write Git version to file as shell_exec is disabled
 git rev-parse HEAD > storage/interop/VERSION
+
+rm storage/interop/UPDATE.lock;
+exit 0;
