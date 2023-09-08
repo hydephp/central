@@ -75,7 +75,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     public function getFilamentAvatarUrl(): ?string
     {
         if ($this->isGuest()) {
-            return 'https://hydephp.com/media/logo.svg';
+            return asset('logo.svg');
         }
 
         return null;
