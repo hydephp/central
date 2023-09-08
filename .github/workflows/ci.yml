@@ -47,7 +47,7 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           pass: ${{ secrets.SSH_PASS }}
           run: |
-            cd ${{ secrets.SSH_PATH }}
+            cd $SSH_PATH
             bash update.sh
 
       - name: Check website status
