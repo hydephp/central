@@ -21,6 +21,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Utils\HeroIcon;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -47,7 +48,19 @@ class AdminPanelProvider extends PanelProvider
                             ->icon('heroicon-o-home')
                             ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard') || request()->url() === url(''))
                             ->url(fn(): string => Pages\Dashboard::getUrl()),
-                    ])
+                    ]),
+                    NavigationGroup::make('HydePHP Services')->items([
+                        static::externalLinkItem('Main Website', 'https://hydephp.com', 'home'),
+                        static::externalLinkItem('Documentation', 'https://hydephp.com/docs/1.x', 'book-open'),
+                        static::externalLinkItem('Open Analytics', 'https://analytics.hydephp.com', 'chart-bar-square'),
+                    ]),
+                    NavigationGroup::make('Community Resources')->items([
+                        static::externalLinkItem('Discord Server', 'https://discord.hydephp.com', HeroIcon::ChatBubbleLeftRight),
+                        static::externalLinkItem('Community Portal', 'https://hydephp.com/community.html', HeroIcon::UserGroup),
+                        static::externalLinkItem('Developer Resources', 'https://hydephp.com/community.html#developers', HeroIcon::CommandLine),
+                        static::externalLinkItem('GitHub Organisation', 'https://github.com/hydephp', HeroIcon::CodeBracketSquare),
+                        static::externalLinkItem('Source Monorepo', 'https://github.com/hydephp/develop', HeroIcon::BuildingLibrary),
+                    ]),
                 ]);
             })
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
@@ -68,5 +81,17 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 GuestableAuthenticate::class,
             ]);
+    }
+
+    protected static function externalLinkItem(string $label, string $url, null|string|HeroIcon $icon = null): NavigationItem
+    {
+        if ($icon instanceof HeroIcon) {
+            $icon = $icon->value;
+        }
+
+        return NavigationItem::make($label)
+            ->url($url)
+            ->icon($icon ? "heroicon-o-$icon" : null)
+            ->openUrlInNewTab();
     }
 }
