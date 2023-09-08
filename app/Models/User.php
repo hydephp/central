@@ -61,6 +61,11 @@ class User extends Authenticatable implements FilamentUser
         return $user;
     }
 
+    public function isGuest(): bool
+    {
+        return $this->email === 'guest@hydephp.com';
+    }
+
      public function canAccessPanel(Panel $panel): bool
      {
          return true;
