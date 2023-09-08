@@ -47,3 +47,9 @@ jobs:
           run: |
             cd ${{ secrets.SSH_PATH }}
             bash update.sh
+
+      - name: Check website status
+        uses: pavelsaman/website-check@330f28d895a5c786f8d0bbfd1a3ccb15bfe1fc3e
+        with:
+          url: https://central.hydephp.com
+          status_code: 200
