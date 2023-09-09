@@ -40,11 +40,7 @@
     </x-filament::card>
 
     <x-filament::card>
-        <section @class([
-            'grid',
-            'grid-cols-7 gap-2' => $compact,
-            'grid-cols-3 gap-4' => ! $compact,
-        ])>
+        <section class="grid grid-cols-3 gap-4">
             @foreach($this->getItems() as $item)
                 <figure class="border rounded-xl flex flex-col">
                     <img src="{{ $item->download }}" alt="{{ $item->name }}" class="p-4 cursor-pointer" loading="lazy" onclick="window.open('{{ $item->link }}')" title="View on GitHub">
