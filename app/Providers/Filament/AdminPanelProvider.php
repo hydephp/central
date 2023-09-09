@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\AppPanel;
 use App\Http\Middleware\GuestableAuthenticate;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,71 +28,7 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        return $panel
-            ->default()
-            ->id('app')
-            ->path('')
-            ->login()
-            ->colors([
-                'primary' => Color::Indigo,
-            ])
-            ->favicon(url('favicon.ico'))
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
-            ->pages([
-                Pages\Dashboard::class,
-            ])
-            ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-                return $builder->groups([
-                    NavigationGroup::make('Quick Navigation')->items([
-                        NavigationItem::make('Dashboard')
-                            ->icon('heroicon-o-home')
-                            ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard') || request()->url() === url(''))
-                            ->url(fn(): string => Pages\Dashboard::getUrl()),
-                    ]),
-                    NavigationGroup::make('HydePHP Services')->items([
-                        static::externalLinkItem('Main Website', 'https://hydephp.com', 'home'),
-                        static::externalLinkItem('Documentation', 'https://hydephp.com/docs/1.x', 'book-open'),
-                        static::externalLinkItem('Open Analytics', 'https://analytics.hydephp.com', 'chart-bar-square'),
-                    ]),
-                    NavigationGroup::make('Community Resources')->items([
-                        static::externalLinkItem('Discord Server', 'https://discord.hydephp.com', HeroIcon::ChatBubbleLeftRight),
-                        static::externalLinkItem('Community Portal', 'https://hydephp.com/community.html', HeroIcon::UserGroup),
-                        static::externalLinkItem('Developer Resources', 'https://hydephp.com/community.html#developers', HeroIcon::CommandLine),
-                        static::externalLinkItem('GitHub Organisation', 'https://github.com/hydephp', HeroIcon::CodeBracketSquare),
-                        static::externalLinkItem('Source Monorepo', 'https://github.com/hydephp/develop', HeroIcon::BuildingLibrary),
-                    ]),
-                ]);
-            })
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-                Widgets\AccountWidget::class,
-            ])
-            ->middleware([
-                EncryptCookies::class,
-                AddQueuedCookiesToResponse::class,
-                StartSession::class,
-                AuthenticateSession::class,
-                ShareErrorsFromSession::class,
-                VerifyCsrfToken::class,
-                SubstituteBindings::class,
-                DisableBladeIconComponents::class,
-                DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
-                GuestableAuthenticate::class,
-            ]);
+       return AppPanel::make($panel);
     }
 
-    protected static function externalLinkItem(string $label, string $url, null|string|HeroIcon $icon = null): NavigationItem
-    {
-        if ($icon instanceof HeroIcon) {
-            $icon = $icon->value;
-        }
-
-        return NavigationItem::make($label)
-            ->url($url)
-            ->icon($icon ? "heroicon-o-$icon" : null)
-            ->openUrlInNewTab();
-    }
 }
