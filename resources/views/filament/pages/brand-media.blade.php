@@ -40,7 +40,12 @@
     </x-filament::card>
 
     <x-filament::card>
-        <section class="grid grid-cols-3 gap-4">
+        <form action="javascript:setGridSize();">
+            <label for="gridSizeInput">Grid size</label>
+            <input id="gridSizeInput" type="range" min="1" max="9" value="3" title="3 columns" oninput="setGridSize(this)">
+        </form>
+        <section class="grid grid-cols-3 gap-4" id="mediaGrid">
+
             @foreach($this->getItems() as $item)
                 <figure class="border rounded-xl flex flex-col">
                     <img src="{{ $item->download }}" alt="{{ $item->name }}" class="p-4 cursor-pointer" loading="lazy" onclick="window.open('{{ $item->link }}')" title="View on GitHub">
@@ -57,6 +62,12 @@
                     </figcaption>
                 </figure>
             @endforeach
+            <script>
+                function setGridSize(input) {
+                    input.title = `${input.value} columns`;
+                    document.getElementById('mediaGrid').style.gridTemplateColumns = `repeat(${input.value},minmax(0,1fr))`;
+                }
+            </script>
         </section>
     </x-filament::card>
 </x-filament-panels::page>
