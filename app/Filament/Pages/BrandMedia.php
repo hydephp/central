@@ -93,6 +93,10 @@ class BrandMedia extends Page
     protected function getHeaderActions(): array
     {
         return [
+            Action::make('View')
+                ->label('View on GitHub')
+                ->url('https://github.com/hydephp/hydephp/tree/master/assets', true)
+                ->color('gray'),
             Action::make('Fetch')
                 ->authorize('access-admin')
                 ->action(function () {
