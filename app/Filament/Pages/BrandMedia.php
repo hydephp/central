@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class BrandMedia extends Page
@@ -14,7 +15,24 @@ class BrandMedia extends Page
 
     protected function getItems(): array
     {
-        return $this->fetchFileTree();
+        // Todo: It would be better to use the current HEAD SHA as the cache key instead of a TTL,
+        //       that we would always get the latest data but with only one external request.
+        //       (We may want to bust old caches though to save on disk space if we need)
+        return Cache::remember('brand-media', 600, function() {
+            $items = [];
+            foreach ($this->fetchFileTree() as $node) {
+                if ($this->isFilenameForImage($node->name)) {
+                    $items[] = (object) [
+                        'name' => $node->name,
+                        'path' => $node->path,
+                        'size' => $node->size,
+                        'link' => $node->html_url,
+                        'download' => $node->download_url,
+                    ];
+                }
+            }
+            return $items;
+        });
     }
 
     protected function fetchFileTree(): array
@@ -56,5 +74,12 @@ class BrandMedia extends Page
     protected function connect(string $url): Response
     {
         return Http::withToken(config('services.github.token'))->throw()->get($url);
+    }
+
+    protected function isFilenameForImage(string $name): bool
+    {
+        return in_array(pathinfo($name, PATHINFO_EXTENSION), [
+            'png', 'svg', 'jpg', 'jpeg'
+        ]);
     }
 }
