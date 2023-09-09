@@ -18,6 +18,8 @@ class BrandMedia extends Page
         // Todo: It would be better to use the current HEAD SHA as the cache key instead of a TTL,
         //       that we would always get the latest data but with only one external request.
         //       (We may want to bust old caches though to save on disk space if we need)
+        //       (A more efficient solution is of course to have a webhook to trigger
+        //       a database key but that is way to much over-engineering for now)
         return Cache::remember('brand-media', 600, function () {
             $items = [];
             foreach ($this->fetchFileTree() as $node) {
