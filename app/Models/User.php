@@ -51,7 +51,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     {
         $user = User::where('email', 'guest@hydephp.com')->first();
         if (! $user) {
-            $user = User::create([
+            $user = User::forceCreate([
                 'name' => 'Guest',
                 'email' => 'guest@hydephp.com',
                 'email_verified_at' => now(),
