@@ -7,5 +7,6 @@
         }}
     >
         {{ $brand }}
+        <sup class="text-white px-1.5 rounded-lg" style="background-color: #22c55e;">Beta</sup>
     </div>
 @endif
