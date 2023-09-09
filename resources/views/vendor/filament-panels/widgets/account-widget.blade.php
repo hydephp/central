@@ -11,8 +11,7 @@
                 <h2
                         class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white"
                 >
-                    {{ __('filament-panels::widgets/account-widget.welcome', ['app' => config('app.name')]) }},
-                    {{ filament()->getUserName($user) }}!
+                    {{ __('Welcome to :app, :user!', ['app' => config('app.name'), 'user' => filament()->getUserName($user)]) }},
                 </h2>
                 <div class="text-sm text-gray-500 dark:text-gray-400">
                     <p>
