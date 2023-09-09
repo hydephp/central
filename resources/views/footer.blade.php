@@ -1,4 +1,4 @@
-<footer class="absolute bottom-0 py-2 px-4 w-full text-center">
+<footer class="mt-auto py-2 px-4 text-center">
     <small class="opacity-70">
         {{ config('app.name') }} <small>v</small><code class="font-mono">{{ $footer->version() }}</code> <small id="version-status" class="opacity-70"></small>
     </small>

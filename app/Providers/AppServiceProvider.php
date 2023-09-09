@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        FilamentView::registerRenderHook('panels::body.end', Footer::make());
+        FilamentView::registerRenderHook('panels::footer', Footer::make());
         FilamentView::registerRenderHook('panels::auth.login.form.after', FilamentRenderView::anonymous('components.login-as-guest-button'));
 
         Str::macro('bytesToHuman', /** Format the given number of bytes into a human-readable format. */
