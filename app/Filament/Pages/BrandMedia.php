@@ -18,7 +18,7 @@ class BrandMedia extends Page
         // Todo: It would be better to use the current HEAD SHA as the cache key instead of a TTL,
         //       that we would always get the latest data but with only one external request.
         //       (We may want to bust old caches though to save on disk space if we need)
-        return Cache::remember('brand-media', 600, function() {
+        return Cache::remember('brand-media', 600, function () {
             $items = [];
             foreach ($this->fetchFileTree() as $node) {
                 if ($this->isFilenameForImage($node->name)) {
@@ -31,6 +31,7 @@ class BrandMedia extends Page
                     ];
                 }
             }
+
             return $items;
         });
     }
@@ -68,6 +69,7 @@ class BrandMedia extends Page
                 }
             }
         }
+
         return $fileTree;
     }
 
@@ -79,7 +81,7 @@ class BrandMedia extends Page
     protected function isFilenameForImage(string $name): bool
     {
         return in_array(pathinfo($name, PATHINFO_EXTENSION), [
-            'png', 'svg', 'jpg', 'jpeg'
+            'png', 'svg', 'jpg', 'jpeg',
         ]);
     }
 }

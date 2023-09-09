@@ -9,7 +9,6 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -56,9 +55,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
                 'name' => 'Guest',
                 'email' => 'guest@hydephp.com',
                 'email_verified_at' => now(),
-                'password' => Hash::make('guest')
+                'password' => Hash::make('guest'),
             ]);
         }
+
         return $user;
     }
 
@@ -67,10 +67,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         return $this->email === 'guest@hydephp.com';
     }
 
-     public function canAccessPanel(Panel $panel): bool
-     {
-         return true;
-     }
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
 
     public function getFilamentAvatarUrl(): ?string
     {

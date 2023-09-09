@@ -17,13 +17,13 @@ class AppPanel
             NavigationGroup::make('Quick Navigation')->items([
                 NavigationItem::make('Dashboard')
                     ->icon('heroicon-o-home')
-                    ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard') || request()->url() === url(''))
-                    ->url(fn(): string => Pages\Dashboard::getUrl()),
+                    ->isActiveWhen(fn (): bool => request()->routeIs('filament.admin.pages.dashboard') || request()->url() === url(''))
+                    ->url(fn (): string => Pages\Dashboard::getUrl()),
 
                 NavigationItem::make('Brand Media')
                     ->icon(BrandMedia::getNavigationIcon())
-                    ->isActiveWhen(fn(): bool => request()->routeIs(BrandMedia::getRouteName()))
-                    ->url(fn(): string => BrandMedia::getUrl()),
+                    ->isActiveWhen(fn (): bool => request()->routeIs(BrandMedia::getRouteName()))
+                    ->url(fn (): string => BrandMedia::getUrl()),
             ]),
             NavigationGroup::make('HydePHP Services')->items([
                 static::externalLinkItem('Main Website', 'https://hydephp.com', 'home'),
@@ -40,7 +40,7 @@ class AppPanel
         ]);
     }
 
-    protected static function externalLinkItem(string $label, string $url, null|string|HeroIcon $icon = null): NavigationItem
+    protected static function externalLinkItem(string $label, string $url, string|HeroIcon $icon = null): NavigationItem
     {
         if ($icon instanceof HeroIcon) {
             $icon = $icon->value;

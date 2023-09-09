@@ -7,7 +7,6 @@ use App\Views\Footer;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
                     $bytes /= 1024;
                 }
 
-                return round($bytes, $precision) . ' ' . ['B', 'KB', 'MB', 'GB', 'TB'][$i];
+                return round($bytes, $precision).' '.['B', 'KB', 'MB', 'GB', 'TB'][$i];
             }
         );
     }

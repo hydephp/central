@@ -6,6 +6,7 @@ namespace App\Utils;
  * A list of all HeroIcons in the current installation.
  *
  * @link https://heroicons.com
+ *
  * @experimental
  */
 enum HeroIcon: string
