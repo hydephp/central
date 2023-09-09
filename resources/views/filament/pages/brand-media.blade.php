@@ -40,10 +40,16 @@
     </x-filament::card>
 
     <x-filament::card>
-        <form action="javascript:setGridSize();">
-            <label for="gridSizeInput">Grid size</label>
-            <input id="gridSizeInput" type="range" min="1" max="9" value="3" title="3 columns" oninput="setGridSize(this)">
-        </form>
+        <header class="flex justify-between mb-4">
+            <h2>
+                <strong>All media files</strong>
+                <small>({{ count($this->getItems()) }} total)</small>
+            </h2>
+            <form class="flex text-sm items-center">
+                <label for="gridSizeInput" class="me-1">Grid size</label>
+                <input id="gridSizeInput" type="range" min="1" max="9" value="3" title="3 columns" oninput="setGridSize()">
+            </form>
+        </header>
         <section class="grid grid-cols-3 gap-4" id="mediaGrid">
 
             @foreach($this->getItems() as $item)
@@ -63,9 +69,31 @@
                 </figure>
             @endforeach
             <script>
-                function setGridSize(input) {
-                    input.title = `${input.value} columns`;
-                    document.getElementById('mediaGrid').style.gridTemplateColumns = `repeat(${input.value},minmax(0,1fr))`;
+                function setGridSize(customSize = null) {
+                    const grid = document.getElementById('mediaGrid');
+                    const input = document.getElementById('gridSizeInput');
+                    let size = customSize ?? input.value;
+
+                    input.title = `${size} columns`;
+                    grid.style.gridTemplateColumns = `repeat(${size},minmax(0,1fr))`;
+
+                    if (size > 5) {
+                        grid.classList.remove('gap-4');
+                        grid.classList.add('gap-2');
+                    } else {
+                        grid.classList.add('gap-4');
+                        grid.classList.remove('gap-2');
+                    }
+
+                    // Store preferred size in local storage
+                    localStorage.setItem('brandMediaGridSize', size);
+                }
+
+                // Load preferred size from local storage
+                let preferredSize = localStorage.getItem('brandMediaGridSize');
+                if (preferredSize) {
+                    document.getElementById('gridSizeInput').value = preferredSize;
+                    setGridSize(preferredSize);
                 }
             </script>
         </section>
