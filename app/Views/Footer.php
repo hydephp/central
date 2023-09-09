@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Utils;
+namespace App\Views;
 
 /**
  * Injected into the footer component
  */
-class Footer
+class Footer extends FilamentRenderView
 {
+    protected static string $view = 'footer';
+
     public function version(): string
     {
         return substr($this->getCachedVersionFromDisk(), 0, 7);

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Utils\Footer;
+use App\Views\Footer;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
@@ -22,9 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        FilamentView::registerRenderHook(
-            'panels::body.end',
-            fn (): View => view('footer', ['footer' => new Footer()]),
-        );
+        FilamentView::registerRenderHook('panels::body.end', Footer::make());
     }
 }
