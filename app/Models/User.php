@@ -67,6 +67,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         return $this->email === 'guest@hydephp.com';
     }
 
+    public function isAdmin(): bool
+    {
+        return in_array($this->email, config('auth.admins')) && $this->hasVerifiedEmail();
+    }
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;

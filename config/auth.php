@@ -112,4 +112,6 @@ return [
 
     'password_timeout' => 10800,
 
+    'admins' => explode(',', env('ADMIN_EMAILS')),
+
 ];
