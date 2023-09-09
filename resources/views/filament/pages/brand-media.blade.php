@@ -30,6 +30,11 @@
                 </x-filament::link>
                 page.
             </li>
+            <li>
+                Remember that the filenames may change, so if you are hotlinking,
+                make sure to include the commit hash to get a permanent URL,
+                and abide by GitHub's terms of service.
+            </li>
         </ul>
         </article>
     </x-filament::card>
