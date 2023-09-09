@@ -14,6 +14,6 @@ class Footer
 
     protected function getCachedVersionFromDisk(): string
     {
-        return (@file_get_contents(storage_path('interop/VERSION'))) ?: str_repeat('0', 40);
+        return trim((@file_get_contents(storage_path('interop/VERSION'))) ?: str_repeat('0', 40));
     }
 }
