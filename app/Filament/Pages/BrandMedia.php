@@ -13,6 +13,8 @@ class BrandMedia extends Page
 
     protected static string $view = 'filament.pages.brand-media';
 
+    public bool $compact = true;
+
     protected function getItems(): array
     {
         // Todo: It would be better to use the current HEAD SHA as the cache key instead of a TTL,
