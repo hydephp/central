@@ -1,6 +1,6 @@
 <x-filament-panels::page>
     <x-filament::card>
-        <article class="prose max-w-full">
+        <article class="prose dark:prose-invert max-w-full">
 
         <p class="mb-2">
             <strong>Welcome to the HydePHP Brand Asset Media Library.</strong>
@@ -55,7 +55,7 @@
             @foreach($this->getItems() as $item)
                 <figure class="border rounded-xl flex flex-col">
                     <img src="{{ $item->download }}" alt="{{ $item->name }}" class="p-4 cursor-pointer" loading="lazy" onclick="window.open('{{ $item->link }}')" title="View on GitHub">
-                    <figcaption class="p-4 border-t prose">
+                    <figcaption class="p-4 border-t prose dark:prose-invert">
                         <div>
                             <strong>{{ $item->name }}</strong>
                             <small class="opacity-70">({{ \Illuminate\Support\Str::bytesToHuman($item->size) }})</small>
