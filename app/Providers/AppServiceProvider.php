@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Views\FilamentRenderView;
 use App\Views\Footer;
 use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\ServiceProvider;
@@ -23,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         FilamentView::registerRenderHook('panels::body.end', Footer::make());
+        FilamentView::registerRenderHook('panels::auth.login.form.after', FilamentRenderView::anonymous('components.login-as-guest-button'));
     }
 }

@@ -16,4 +16,9 @@ abstract class FilamentRenderView
     {
         return fn (): View => view(static::$view, [static::$view => new static()]);
     }
+
+    final public static function anonymous(string $view): Closure
+    {
+        return fn (): View => view($view);
+    }
 }
