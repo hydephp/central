@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filament\Pages\BrandMedia;
 use App\Utils\HeroIcon;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
@@ -18,6 +19,11 @@ class AppPanel
                     ->icon('heroicon-o-home')
                     ->isActiveWhen(fn(): bool => request()->routeIs('filament.admin.pages.dashboard') || request()->url() === url(''))
                     ->url(fn(): string => Pages\Dashboard::getUrl()),
+
+                NavigationItem::make('Brand Media')
+                    ->icon(BrandMedia::getNavigationIcon())
+                    ->isActiveWhen(fn(): bool => request()->routeIs(BrandMedia::getRouteName()))
+                    ->url(fn(): string => BrandMedia::getUrl()),
             ]),
             NavigationGroup::make('HydePHP Services')->items([
                 static::externalLinkItem('Main Website', 'https://hydephp.com', 'home'),
