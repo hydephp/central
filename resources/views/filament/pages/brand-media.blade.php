@@ -38,4 +38,25 @@
         </ul>
         </article>
     </x-filament::card>
+
+    <x-filament::card>
+        <section class="grid grid-cols-3 gap-4">
+            @foreach($this->getItems() as $item)
+                <figure class="border rounded-xl flex flex-col">
+                    <img src="{{ $item->download }}" alt="{{ $item->name }}" class="p-4" loading="lazy">
+                    <figcaption class="p-4 border-t prose">
+                        <div>
+                            <strong>{{ $item->name }}</strong>
+                            <small class="opacity-70">({{ \Illuminate\Support\Str::bytesToHuman($item->size) }})</small>
+                        </div>
+                        <div class="text-sm">
+                            <a href="{{ $item->link }}" target="_blank" rel="noopener noreferrer nofollow">View on GitHub</a>
+                            &nbsp;
+                            <a href="{{ $item->download }}" target="_blank" rel="noopener noreferrer nofollow">Download</a>
+                        </div>
+                    </figcaption>
+                </figure>
+            @endforeach
+        </section>
+    </x-filament::card>
 </x-filament-panels::page>
