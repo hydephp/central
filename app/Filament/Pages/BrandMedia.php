@@ -97,6 +97,7 @@ class BrandMedia extends Page
                 ->label('View on GitHub')
                 ->url('https://github.com/hydephp/hydephp/tree/master/assets', true)
                 ->color('gray'),
+
             Action::make('Fetch')
                 ->authorize('access-admin')
                 ->action(function () {
