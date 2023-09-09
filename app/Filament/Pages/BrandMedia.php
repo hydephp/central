@@ -2,6 +2,9 @@
 
 namespace App\Filament\Pages;
 
+use Filament\Actions\Action;
+use Filament\Facades\Filament;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Cache;
@@ -85,5 +88,20 @@ class BrandMedia extends Page
         return in_array(pathinfo($name, PATHINFO_EXTENSION), [
             'png', 'svg', 'jpg', 'jpeg',
         ]);
+    }
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            Action::make('Fetch')
+                ->authorize('access-admin')
+                ->action(function () {
+                    Cache::forget('brand-media');
+                    Notification::make()
+                        ->title('Fetched successfully')
+                        ->success()
+                        ->send();
+                })
+        ];
     }
 }
