@@ -18,6 +18,11 @@
                         This website will give you quick access and insight to all things
                         <x-filament::link href="https://hydephp.com/">HydePHP</x-filament::link>
                         &ndash; the static site generator you've been waiting for.
+
+                        Please note that this platform is intended for those who wish to contribute
+                        to the library source code itself, and if you are simply looking to create
+                        a site with HydePHP, you may instead want to head over to the
+                        <x-filament::link href="https://hydephp.com/docs">official docs</x-filament::link>!
                     </p>
                 </div>
             </div>
