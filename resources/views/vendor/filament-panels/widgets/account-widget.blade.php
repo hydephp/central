@@ -23,7 +23,7 @@
                         Please note that this platform is intended for those who wish to contribute
                         to the library source code itself, and if you are simply looking to create
                         a site with HydePHP, you may instead want to head over to the
-                        <x-filament::link href="https://hydephp.com/docs">official docs</x-filament::link>!
+                        <a href="https://hydephp.com/docs" style="--c-300:var(--primary-300);--c-400:var(--primary-400);--c-500:var(--primary-500);--c-600:var(--primary-600);" class="fi-link fi-link-size-md relative inline-flex items-center justify-center font-semibold outline-none transition duration-75 hover:underline focus:underline gap-1.5 text-sm text-custom-600 dark:text-custom-400">official docs</a>!
                     </p>
                 </div>
             </div>
