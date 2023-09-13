@@ -27,10 +27,10 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
     protected static ?string $title = 'GitHub Post Creator';
     protected static ?string $slug = 'experiments/github-post-creator';
 
-    public string $repository;
-    public string $branch;
-    public string $postTitle;
-    public string $content;
+    public ?string $repository;
+    public ?string $branch;
+    public ?string $postTitle;
+    public ?string $content;
 
     /** @experimental May be moved to custom base class */
     public static function navigationItem()
