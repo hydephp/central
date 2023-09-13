@@ -40,8 +40,8 @@ We also collect the following data ourselves:
 - API Requests and Page Views for the Analytics platform.*
 
 *<small>These track both the total number of visits, and unique visits using an anonymization algorithm that makes it
-impossible to tie the unique user to any other activities due to the use of a dual-salt mechanism
-containing both a server secret and a date mechanism.</small>
+impossible to tie the unique user to any other activities due to the use of a dual-salt mechanism containing both
+a server secret and a dated string into a hash that is by design useless for other purposes.</small>
 
 ## Disclaimer
 
