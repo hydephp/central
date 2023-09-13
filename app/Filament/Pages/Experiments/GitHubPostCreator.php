@@ -43,7 +43,7 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
             TextInput::make('branch')->required()->default('main'),
 
 
-            TextInput::make('title')->required(),
+            TextInput::make('postTitle')->required(),
             Textarea::make('content')->required()
         ];
     }
