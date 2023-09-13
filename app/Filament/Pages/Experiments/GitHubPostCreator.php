@@ -45,7 +45,7 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
     {
         return [
             TextInput::make('repository')->required()->placeholder('https://github.com/hydephp/my-hyde-blog'), // Todo add validation
-            TextInput::make('branch')->required()->placeholder('main')->default('main'),
+            TextInput::make('branch')->required()->placeholder('main')->default('main')->datalist(['master', 'main']),
 
 
             TextInput::make('postTitle')->placeholder('Hello World!')->required(),
