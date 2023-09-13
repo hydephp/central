@@ -7,7 +7,7 @@ namespace App\Views;
  */
 class Footer extends FilamentRenderView
 {
-    protected static string $view = 'footer';
+    protected static string $view = 'filament.components.footer';
 
     public function version(): string
     {
