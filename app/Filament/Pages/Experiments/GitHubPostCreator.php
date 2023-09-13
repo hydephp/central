@@ -77,7 +77,11 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
 
     public function mount(): void
     {
-        $this->form->fill();
+        if (session()->has('github-post-creator-data')) {
+            $state = session()->get('github-post-creator-data');
+        }
+
+        $this->form->fill($state ?? null);
     }
 
     public function create(): void
@@ -90,6 +94,12 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
         ]));
 
         // Todo open modal with button to open in new tab, or to download markdown file. We could also display the markdown there.
+
+        // Store the repo and branch in the user session state, so they can come back later and make more posts
+        session()->put('github-post-creator-data', [
+            'repository' => $repository,
+            'branch' => $this->branch,
+        ]);
 
         $this->redirect($url);
     }
