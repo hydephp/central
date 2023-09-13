@@ -80,11 +80,9 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
 
     public function create(): void
     {
-        $repo = $this->repository;
-        // Todo add https if not present
-        $repo = trim($this->repository, '/');
+        $repository = $this->getRepositoryUrl();
         $markdown = $this->content; // Todo assemble front matter
-        $url = $this->repository . '/new/'.$this->branch.'/_posts?'.http_build_query([
+        $url = $repository . '/new/'.$this->branch.'/_posts?'.http_build_query([
             'filename' => Str::slug($this->postTitle).'.md',
             'value' => $markdown
         ]);
@@ -92,5 +90,13 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
         // Todo open modal with button to open in new tab, or to download markdown file. We could also display the markdown there.
 
         $this->redirect($url);
+    }
+
+    protected function getRepositoryUrl(): string
+    {
+        $repo = $this->repository;
+        // Todo add https if not present
+        $repo = trim($repo, '/');
+        return $repo;
     }
 }
