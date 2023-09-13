@@ -3,6 +3,7 @@
 namespace App\Filament\Pages\Experiments;
 
 use Filament\Actions\Contracts\HasActions;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -35,7 +36,12 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
     protected function getFormSchema(): array
     {
         return [
-            //
+            TextInput::make('repository')->required(), // Todo add validation
+            TextInput::make('branch')->required()->default('main'),
+
+
+            TextInput::make('title')->required(),
+            Textarea::make('content')->required()
         ];
     }
 
