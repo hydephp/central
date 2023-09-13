@@ -92,11 +92,21 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
         $this->redirect($url);
     }
 
+    /** Get the normalized repository URL */
     protected function getRepositoryUrl(): string
     {
         $repo = $this->repository;
-        // Todo add https if not present
-        $repo = trim($repo, '/');
-        return $repo;
+        $repo = str_replace('http://', 'https://', $repo);
+        $repo = str_replace('www.github.com', 'github.com', $repo);
+
+        if (str_starts_with($repo, 'github.com')) {
+            $repo = 'https://'.$repo;
+        }
+
+        if (! str_starts_with($repo, 'https://github.com')) {
+            $repo = 'https://github.com/'.$repo;
+        }
+
+        return trim($repo, '/');
     }
 }
