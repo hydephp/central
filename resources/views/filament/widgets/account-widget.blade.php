@@ -11,7 +11,7 @@
                 <h2
                         class="grid flex-1 text-base font-semibold leading-6 text-gray-950 dark:text-white"
                 >
-                    {{ __('Welcome to :app, :user!', ['app' => config('app.name'), 'user' => filament()->getUserName($user)]) }}
+                    {{ __('Welcome to :app, :user!', ['app' => config('app.name'), 'user' => $user->getFirstName()]) }}
                 </h2>
                 <div class="text-sm text-gray-500 dark:text-gray-400 grid md:grid-cols-12">
                     <p class="mb-4 col-span-5">
