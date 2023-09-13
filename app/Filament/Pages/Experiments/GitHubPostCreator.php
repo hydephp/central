@@ -11,6 +11,7 @@ use Filament\Navigation\NavigationItem;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
+use Illuminate\Support\Str;
 
 /**
  * @property \Filament\Forms\Form $form
@@ -68,6 +69,15 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
 
     public function create(): void
     {
-        //
+        $repo = $this->repository;
+        // Todo add https if not present
+        $repo = trim($this->repository, '/');
+        $markdown = $this->content; // Todo assemble front matter
+        $url = $this->repository . '/new/'.$this->branch.'/_posts?'.http_build_query([
+            'filename' => Str::slug($this->postTitle).'.md',
+            'value' => $markdown
+        ]);
+
+        $this->redirect($url);
     }
 }
