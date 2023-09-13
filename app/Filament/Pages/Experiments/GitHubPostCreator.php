@@ -82,10 +82,10 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
     {
         $repository = $this->getRepositoryUrl();
         $markdown = $this->content; // Todo assemble front matter
-        $url = $repository . '/new/'.$this->branch.'/_posts?'.http_build_query([
-            'filename' => Str::slug($this->postTitle).'.md',
+        $url = sprintf('%s/new/%s/_posts?%s', $repository, $this->branch, http_build_query([
+            'filename' => Str::slug($this->postTitle) . '.md',
             'value' => $markdown
-        ]);
+        ]));
 
         // Todo open modal with button to open in new tab, or to download markdown file. We could also display the markdown there.
 
