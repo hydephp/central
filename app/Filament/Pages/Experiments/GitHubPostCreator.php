@@ -45,12 +45,23 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
     protected function getFormSchema(): array
     {
         return [
-            TextInput::make('repository')->required()->placeholder('https://github.com/hydephp/my-hyde-blog'), // Todo add validation
-            TextInput::make('branch')->required()->placeholder('main')->default('main')->datalist(['master', 'main']),
+            TextInput::make('repository') // Todo add validation
+                ->required()
+                ->placeholder('https://github.com/hydephp/my-hyde-blog'),
 
+            TextInput::make('branch')
+                ->required()
+                ->placeholder('main')
+                ->default('main')
+                ->datalist(['master', 'main']),
 
-            TextInput::make('postTitle')->placeholder('Hello World!')->required(),
-            Textarea::make('content')->placeholder('Write something awesome!')->required()
+            TextInput::make('postTitle')
+                ->placeholder('Hello World!')
+                ->required(),
+
+            Textarea::make('content')
+                ->placeholder('Write something awesome!')
+                ->required()
         ];
     }
 
