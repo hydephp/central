@@ -61,13 +61,13 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
         ];
     }
 
-    public function create(): void
-    {
-        //
-    }
-
     public function mount(): void
     {
         $this->form->fill();
+    }
+
+    public function create(): void
+    {
+        //
     }
 }
