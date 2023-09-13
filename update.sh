@@ -6,7 +6,12 @@ fi
 touch storage/interop/UPDATE.lock;
 
 php artisan down
+
+# Add and stash untracked files in case public directory has changed
+git add *
+git stash
 git pull
+
 php ~/composer.phar install --no-dev --no-interaction
 php artisan up
 
