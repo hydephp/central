@@ -47,3 +47,5 @@ containing both a server secret and a date mechanism.</small>
 
 This document was written in good faith by a developer, and not a lawyer,
 in the hopes that you as well will act in good faith when using our services.
+
+If you have any questions about this document you can contact us at hello@hydephp.com.
