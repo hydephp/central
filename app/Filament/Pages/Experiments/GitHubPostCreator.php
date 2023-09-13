@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages\Experiments;
 
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -10,7 +11,7 @@ use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
 
-class GitHubPostCreator extends Page implements HasForms
+class GitHubPostCreator extends Page implements HasForms, HasActions
 {
     use InteractsWithForms;
     use InteractsWithFormActions;
