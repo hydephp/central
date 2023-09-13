@@ -39,3 +39,8 @@ We also collect the following data ourselves:
 *<small>These track both the total number of visits, and unique visits using an anonymization algorithm that makes it
 impossible to tie the unique user to any other activities due to the use of a dual-salt mechanism
 containing both a server secret and a date mechanism.</small>
+
+## Disclaimer
+
+This document was written in good faith by a developer, and not a lawyer,
+in the hopes that you as well will act in good faith when using our services.
