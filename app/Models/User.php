@@ -5,14 +5,16 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements FilamentUser, HasAvatar
+class User extends Authenticatable implements FilamentUser, HasAvatar, HasName
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -84,5 +86,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         }
 
         return null;
+    }
+
+    public function getFilamentName(): string
+    {
+        return Str::before($this->name, ' ');
     }
 }
