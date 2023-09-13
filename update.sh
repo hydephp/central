@@ -19,7 +19,7 @@ git rev-parse HEAD > storage/interop/VERSION
 
 # A hook to run system specific post-deployment code
 if [ -e ".post-update.sh" ]; then
-    bash .post-update.sh;
+    bash .post-update.sh >> storage/logs/update.log;
 fi
 
 rm storage/interop/UPDATE.lock;
