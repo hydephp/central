@@ -41,7 +41,13 @@ class GitHubPostCreator extends Page implements HasForms
     public function getFormActions(): array
     {
         return [
-            //
+            Action::make('Create blog post')
+                ->submit()
         ];
+    }
+
+    public function create(): void
+    {
+        //
     }
 }
