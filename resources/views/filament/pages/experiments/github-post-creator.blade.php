@@ -12,4 +12,16 @@
             This form allows you to visually create blog posts for HydePHP projects with the source hosted on GitHub.
         </p>
     </x-filament::card>
+
+    <x-filament-panels::form
+            :wire:key="$this->getId() . '.forms.' . $this->getFormStatePath()"
+            wire:submit="create"
+    >
+        {{ $this->form }}
+
+        <x-filament-panels::form.actions
+                :actions="$this->getCachedFormActions()"
+                :full-width="$this->hasFullWidthFormActions()"
+        />
+    </x-filament-panels::form>
 </x-filament-panels::page>
