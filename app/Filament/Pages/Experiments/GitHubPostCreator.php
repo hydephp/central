@@ -111,4 +111,12 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
 
         return trim($repo, '/');
     }
+
+    protected function feedbackUrl(): string
+    {
+        return 'https://github.com/hydephp/central/issues/new?'.http_build_query([
+            'title' => 'Feedback on experimental GitHub Post Creator',
+            'labels' => 'feedback',
+        ]);
+    }
 }
