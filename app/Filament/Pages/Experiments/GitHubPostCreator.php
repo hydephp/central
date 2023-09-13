@@ -12,6 +12,9 @@ use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Actions\Action;
 use Filament\Pages\Page;
 
+/**
+ * @property \Filament\Forms\Form $form
+ */
 class GitHubPostCreator extends Page implements HasForms, HasActions
 {
     use InteractsWithForms;
