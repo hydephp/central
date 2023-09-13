@@ -1,4 +1,3 @@
-exit;
 if [ -e "storage/interop/UPDATE.lock" ]; then
     echo "Fatal: An update is already in progress";
     exit 1;
