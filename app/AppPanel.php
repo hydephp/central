@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Filament\Pages\BrandMedia;
+use App\Filament\Pages\Experiments\GitHubPostCreator;
 use App\Utils\HeroIcon;
 use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
@@ -24,6 +25,12 @@ class AppPanel
                     ->icon(BrandMedia::getNavigationIcon())
                     ->isActiveWhen(fn (): bool => request()->routeIs(BrandMedia::getRouteName()))
                     ->url(fn (): string => BrandMedia::getUrl()),
+            ]),
+            NavigationGroup::make('Experiments 🧪')->items([
+                NavigationItem::make('GitHub Post Creator')
+                    ->icon('heroicon-o-'.HeroIcon::PencilSquare->value)
+                    ->isActiveWhen(fn (): bool => request()->routeIs(GitHubPostCreator::getRouteName()))
+                    ->url(fn (): string => GitHubPostCreator::getUrl()),
             ]),
             NavigationGroup::make('HydePHP Services')->items([
                 static::externalLinkItem('Main Website', 'https://hydephp.com', 'home'),
