@@ -62,6 +62,8 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
             Textarea::make('content')
                 ->placeholder('Write something awesome!')
                 ->required()
+
+            // Todo add additional front matter
         ];
     }
 
