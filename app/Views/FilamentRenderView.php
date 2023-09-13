@@ -14,7 +14,7 @@ abstract class FilamentRenderView
 
     public static function make(): Closure
     {
-        return fn (): View => view(static::$view, [static::$view => new static()]);
+        return fn (): View => view(static::$view, [lcfirst(class_basename(static::class)) => new static()]);
     }
 
     final public static function anonymous(string $view): Closure
