@@ -16,6 +16,23 @@ class BrandMedia extends Page
 
     protected static string $view = 'filament.pages.brand-media';
 
+    public bool $loaded = false;
+
+    public array $items = [];
+
+    public function mount(): void
+    {
+        if (Cache::has('brand-media')) {
+            $this->mountItems();
+        }
+    }
+
+    public function mountItems(): void
+    {
+        $this->items = $this->getItems();
+        $this->loaded = true;
+    }
+
     protected function getItems(): array
     {
         // Todo: It would be better to use the current HEAD SHA as the cache key instead of a TTL,
