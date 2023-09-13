@@ -89,6 +89,8 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
             'value' => $markdown
         ]);
 
+        // Todo open modal with button to open in new tab, or to download markdown file. We could also display the markdown there.
+
         $this->redirect($url);
     }
 }
