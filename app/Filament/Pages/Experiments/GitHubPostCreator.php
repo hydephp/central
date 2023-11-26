@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages\Experiments;
 
+use Filament\Actions\Action;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -9,28 +10,31 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Navigation\NavigationItem;
 use Filament\Pages\Concerns\InteractsWithFormActions;
-use Filament\Actions\Action;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
 
 /**
  * @property \Filament\Forms\Form $form
  */
-class GitHubPostCreator extends Page implements HasForms, HasActions
+class GitHubPostCreator extends Page implements HasActions, HasForms
 {
-    use InteractsWithForms;
     use InteractsWithFormActions;
+    use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-pencil-square';
 
     protected static string $view = 'filament.pages.experiments.github-post-creator';
 
     protected static ?string $title = 'GitHub Post Creator';
+
     protected static ?string $slug = 'experiments/github-post-creator';
 
     public ?string $repository;
+
     public ?string $branch;
+
     public ?string $postTitle;
+
     public ?string $content;
 
     /** @experimental May be moved to custom base class */
@@ -61,7 +65,7 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
 
             Textarea::make('content')
                 ->placeholder('Write something awesome!')
-                ->required()
+                ->required(),
 
             // Todo add additional front matter
         ];
@@ -71,7 +75,7 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
     {
         return [
             Action::make('Create blog post')
-                ->submit()
+                ->submit(),
         ];
     }
 
@@ -89,8 +93,8 @@ class GitHubPostCreator extends Page implements HasForms, HasActions
         $repository = $this->getRepositoryUrl();
         $markdown = $this->content; // Todo assemble front matter
         $url = sprintf('%s/new/%s/_posts?%s', $repository, $this->branch, http_build_query([
-            'filename' => Str::slug($this->postTitle) . '.md',
-            'value' => $markdown
+            'filename' => Str::slug($this->postTitle).'.md',
+            'value' => $markdown,
         ]));
 
         // Todo open modal with button to open in new tab, or to download markdown file. We could also display the markdown there.

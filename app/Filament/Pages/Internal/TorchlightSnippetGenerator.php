@@ -16,28 +16,34 @@ use Filament\Pages\Page;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Torchlight\Block;
-use Torchlight\Client;
 use Torchlight\Manager;
-use Torchlight\Torchlight;
 
 /** @copyright All rights reserved */
-class TorchlightSnippetGenerator extends Page implements HasForms, HasActions
+class TorchlightSnippetGenerator extends Page implements HasActions, HasForms
 {
-    use InteractsWithForms;
     use InteractsWithFormActions;
+    use InteractsWithForms;
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     protected static string $view = 'filament.pages.internal.torchlight-snippet-generator';
+
     protected static ?string $slug = 'internal/torchlight-snippet-generator';
 
     public string $code = '';
+
     public string $language = 'php';
+
     public ?string $label = null;
+
     public int $width = 80;
+
     public int $padding = 1;
+
     public int $scale = 4;
+
     public string $lineNumbers = 'false';
+
     public string $useHeader = 'true';
 
     public ?string $html = null;
@@ -85,8 +91,8 @@ class TorchlightSnippetGenerator extends Page implements HasForms, HasActions
                         Select::make('lineNumbers')
                             ->columnSpan(6)
                             ->options(['true' => 'Include line numbers', 'false' => 'No line numbers'])
-                            ->default('false')
-                    ])
+                            ->default('false'),
+                    ]),
                 ]),
 
                 Section::make('Code window settings')->columnSpan(7)->schema([
@@ -95,10 +101,10 @@ class TorchlightSnippetGenerator extends Page implements HasForms, HasActions
                             ->placeholder('Optional label')
                             ->columnSpan(4),
 
-                       Select::make('useHeader')
-                           ->columnSpan(3)
-                           ->options(['true' => 'Yes', 'false' => 'No'])
-                           ->default('true'),
+                        Select::make('useHeader')
+                            ->columnSpan(3)
+                            ->options(['true' => 'Yes', 'false' => 'No'])
+                            ->default('true'),
 
                         TextInput::make('width')
                             ->hint('(ch)')
@@ -108,14 +114,14 @@ class TorchlightSnippetGenerator extends Page implements HasForms, HasActions
                             ->columnSpan(2)
                             ->hint('(rem)')
                             ->options(['0', '1', '2', '3'])
-                            ->default('true')
-                    ])
+                            ->default('true'),
+                    ]),
                 ]),
             ]),
 
             Textarea::make('code')
                 ->rows(10)
-                ->required()
+                ->required(),
         ];
     }
 
@@ -123,7 +129,7 @@ class TorchlightSnippetGenerator extends Page implements HasForms, HasActions
     {
         return [
             Action::make('generate')
-                ->submit()
+                ->submit(),
         ];
     }
 

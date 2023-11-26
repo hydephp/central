@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use Filament\Actions\Action;
-use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Http\Client\Response;
@@ -123,7 +122,7 @@ class BrandMedia extends Page
                         ->title('Fetched successfully')
                         ->success()
                         ->send();
-                })
+                }),
         ];
     }
 }

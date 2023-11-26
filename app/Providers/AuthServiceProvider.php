@@ -29,6 +29,7 @@ class AuthServiceProvider extends ServiceProvider
             if ($isAdmin) {
                 Log::info('Admin access authorized', ['ip' => request()->ip()]);
             }
+
             return $isAdmin;
         });
     }

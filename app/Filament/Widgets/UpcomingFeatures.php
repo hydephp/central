@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Log;
 class UpcomingFeatures extends Widget
 {
     protected static string $view = 'filament.widgets.upcoming-features';
-    protected int | string | array $columnSpan = 'full';
+
+    protected int|string|array $columnSpan = 'full';
 
     public array $features;
+
     public bool $failedToLoad = false;
 
     public function mount(): void
@@ -39,11 +41,11 @@ class UpcomingFeatures extends Widget
 
         // Get the latest release
         $latestRelease = Http::withToken($accessToken)->throw()
-            ->get("https://api.github.com/repos/hydephp/develop/releases/latest")->json();
+            ->get('https://api.github.com/repos/hydephp/develop/releases/latest')->json();
 
         // Get pull requests
         $response = Http::withToken($accessToken)->throw()
-            ->get("https://api.github.com/repos/hydephp/develop/pulls", [
+            ->get('https://api.github.com/repos/hydephp/develop/pulls', [
                 'state' => 'all',
                 'sort' => 'created',
                 'direction' => 'desc',
