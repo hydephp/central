@@ -123,7 +123,7 @@ class BrandMedia extends Page
                         ->success()
                         ->send();
                     // Trigger a page refresh
-                    return redirect()->url('/brand-media');
+                    return redirect(url('/brand-media'));
                 }),
         ];
     }
