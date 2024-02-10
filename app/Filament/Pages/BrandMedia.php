@@ -123,7 +123,7 @@ class BrandMedia extends Page
                         ->success()
                         ->send();
                     // Trigger a page refresh
-                    return redirect()->route('filament.page', ['brand-media']);
+                    return redirect()->url('/brand-media');
                 }),
         ];
     }
