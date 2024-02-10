@@ -122,6 +122,8 @@ class BrandMedia extends Page
                         ->title('Fetched successfully')
                         ->success()
                         ->send();
+                    // Trigger a page refresh
+                    return redirect()->route('filament.page', ['brand-media']);
                 }),
         ];
     }
