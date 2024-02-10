@@ -33,7 +33,7 @@
             <li>
                 Remember that the filenames may change, so if you are hotlinking,
                 make sure to include the commit hash to get a permanent URL,
-                and abide by GitHub's terms of service.
+                and abide by GitHub's terms of service. Also note that generally these files are the originals, and are not minified or optimized for web use.
             </li>
         </ul>
         </article>
