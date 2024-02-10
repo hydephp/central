@@ -7,7 +7,7 @@
             This page will give you quick access to our brand assets.
         </p>
 
-        <ul class="text-sm mt-0 max-w-3xl">
+        <ul class="text-sm mt-0 max-w-full">
             <li>
                 <strong>Terms and Information</strong>
             </li>
