@@ -91,7 +91,7 @@ class GitHubPostCreator extends Page implements HasActions, HasForms
     public function create(): void
     {
         $repository = $this->getRepositoryUrl();
-        $markdown = $this->content; // Todo assemble front matter
+        $markdown = "{$this->assembleFrontMatter()}\n\n{$this->content}";
         $url = sprintf('%s/new/%s/_posts?%s', $repository, $this->branch, http_build_query([
             'filename' => Str::slug($this->postTitle).'.md',
             'value' => $markdown,
@@ -131,6 +131,16 @@ class GitHubPostCreator extends Page implements HasActions, HasForms
         return 'https://github.com/hydephp/central/issues/new?'.http_build_query([
             'title' => 'Feedback on experimental GitHub Post Creator',
             'labels' => 'feedback',
+        ]);
+    }
+
+    protected function assembleFrontMatter(): string
+    {
+        return implode("\n", [
+            '---',
+            sprintf("title: '%s'", $this->postTitle),
+            sprintf("date: '%s'", now()->format('Y-m-d H:i:s')),
+            '---',
         ]);
     }
 }
