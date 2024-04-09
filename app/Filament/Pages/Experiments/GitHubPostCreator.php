@@ -140,6 +140,9 @@ class GitHubPostCreator extends Page implements HasActions, HasForms
             '---',
             sprintf("title: '%s'", $this->postTitle),
             sprintf("date: '%s'", now()->format('Y-m-d H:i:s')),
+            '# description: Your description here',
+            '# category: Uncategorized',
+            '# author: YourName',
             '---',
         ]);
     }
