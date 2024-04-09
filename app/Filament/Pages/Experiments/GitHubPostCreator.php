@@ -91,7 +91,7 @@ class GitHubPostCreator extends Page implements HasActions, HasForms
     public function create(): void
     {
         $repository = $this->getRepositoryUrl();
-        $markdown = "{$this->assembleFrontMatter()}\n\n{$this->content}";
+        $markdown = sprintf("%s\n\n%s", $this->assembleFrontMatter(), $this->content);
         $url = sprintf('%s/new/%s/_posts?%s', $repository, $this->branch, http_build_query([
             'filename' => Str::slug($this->postTitle).'.md',
             'value' => $markdown,
